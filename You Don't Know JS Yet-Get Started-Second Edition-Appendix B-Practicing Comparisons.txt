@@ -1,0 +1,68 @@
+const dayStart = "07:30";
+const dayEnd = "17:45";
+var startHour; // "07"
+var startMinute = dayStart.slice(-2); // "30"
+var endMinute = dayEnd.slice(-2); // "45"
+var endHour; // "17"
+
+
+function scheduleMeeting(startTime,durationMinutes) {
+    // ..TODO..
+
+
+if(dayStart.length === 5){
+startHour = dayStart.slice(0,2);
+}
+if(dayStart.length === 4){
+startHour = dayStart.slice(0,1);
+} 
+
+if(dayEnd.length === 5){
+endHour = dayEnd.slice(0,2);
+}
+if(dayEnd.length === 4){
+endHour = dayEnd.slice(0,1);
+} 
+if(startTime.length === 5){
+meetHour = startTime.slice(0,2);
+}
+if(startTime.length === 4){
+meetHour = startTime.slice(0,1);
+} 
+
+startHour = Number(startHour)*60; // 420
+var start = startHour+Number(startMinute); //420 + 30 = 450
+endHour = Number(endHour)*60; //1020
+var end = endHour+Number(endMinute); //1020 + 45 = 1065
+var meetHour; 
+meetHour = Number(meetHour)*60; 
+var meetMinute = startTime.slice(-2); 
+var meet = meetHour+Number(meetMinute); 
+var meetEnd = meet + durationMinutes;  
+
+    if(meet>=start&&meet<=end){
+        if(meetEnd<=end){
+        return true;
+    }
+        if(meetEnd>=end){
+        return false;
+        }
+    }
+    else{
+        return false;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Output: 
+
+scheduleMeeting("7:00",15);     // false
+scheduleMeeting("07:15",30);    // false
+scheduleMeeting("7:30",30);     // true 
+scheduleMeeting("11:30",60);    // true
+scheduleMeeting("17:00",45);    // true
+scheduleMeeting("17:30",30);    // false 
+scheduleMeeting("18:00",15);    // false
+
+
